@@ -13,8 +13,10 @@ This project involves building an AI-powered health insights app that integrates
 
 ## System Architecture
 
-### 1. Data Collection (Wearable API/Mock Datasets)
-The app relies on user data input through the interface or mock datasets. Data points such as steps, calories burned, active minutes, weight, sleep duration, and disturbances are used to generate insights. In a production version, this data would be integrated from wearable APIs like Fitbit, Apple Health, or Google Fit.
+### 1. Data Collection (Mockaroo API / Mock Datasets)
+Since we couldn't quickly access free APIs for wearable devices, we used **Mockaroo** to generate mock health datasets, which simulate the types of data typically collected from wearables (steps, calories burned, active minutes, weight, sleep duration, and disturbances). The dataset was created with Mockaroo’s online tool, and it’s used here to simulate real-world data in the app. The link to Mockaroo is: [https://www.mockaroo.com/](https://www.mockaroo.com/).
+
+In the future, you can replace this mock data with real-time data from APIs like Fitbit, Google Fit, or Apple Health by integrating them into the data collection layer.
 
 ### 2. AI Agents
 Three core AI agents power the analysis:
@@ -79,6 +81,32 @@ The app provides a user-friendly dashboard built using Streamlit, allowing for:
 ### 3. Model Latency
 - **Challenge**: AI models may introduce latency, especially when handling multiple users simultaneously.
 - **Solution**: Use efficient model deployment techniques, such as model quantization or deploying models on GPUs/TPUs, and implement asynchronous processing.
+
+---
+
+## How to Run the Streamlit App on Google Colab
+
+To run this app on Google Colab, follow these steps:
+
+1. **Clone the Repository**: First, clone this repository to your local machine or Google Colab using the following command:
+
+    ```bash
+    !git clone https://github.com/yourusername/health-insights-app.git
+    ```
+
+2. **Install Dependencies**: Next, install the required dependencies by running the following command:
+
+    ```bash
+    !pip install -r health-insights-app/requirements.txt
+    ```
+
+3. **Run the Streamlit App**: To run the Streamlit app on Colab, you can use the following command. Follow the instructions provided in this [Medium guide](https://medium.com/@deepakbhagchandani/how-to-run-a-streamlit-app-on-google-colab-3490f42b9293) on how to set up a tunnel to display the Streamlit app within Colab.
+
+    ```bash
+    !streamlit run health-insights-app/app.py
+    ```
+
+    Be patient, as Google Colab may sometimes experience connectivity issues. If the app doesn't launch immediately, try re-running the command or following the troubleshooting steps from the Medium article.
 
 ---
 
