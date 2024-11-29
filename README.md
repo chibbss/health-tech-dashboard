@@ -7,13 +7,17 @@ This project involves building an AI-powered health insights app that integrates
 - [System Architecture](#system-architecture)
 - [Implementation Plan](#implementation-plan)
 - [Scalability Considerations](#scalability-considerations)
-- [Challenges and Mitigation](#challenges-and-mitigation)
+- [Challenges and Limitations](#challenges-and-limitations)
 - [How to Run the Streamlit App on Google Colab](#how-to-run-the-streamlit-app-on-google-colab)
 - [Running Locally](#running-locally)
 
 ---
 
 ## System Architecture
+
+Below is the high-level system architecture diagram for the **MindHealth App**:
+
+![System Architecture](MINDHEALTH%20APP.png)
 
 ### 1. Data Collection (Mockaroo API / Mock Datasets)
 Since we couldn't quickly access free APIs for wearable devices, we used **Mockaroo** to generate mock health datasets, which simulate the types of data typically collected from wearables (steps, calories burned, active minutes, weight, sleep duration, and disturbances). The dataset was created with Mockaroo’s online tool, and it’s used here to simulate real-world data in the app. The link to Mockaroo is: [https://www.mockaroo.com/](https://www.mockaroo.com/).
@@ -70,19 +74,23 @@ The app provides a user-friendly dashboard built using Streamlit, allowing for:
 
 ---
 
-## Challenges and Mitigation
+## Challenges and Limitations
 
-### 1. API Rate Limits
-- **Challenge**: Wearable APIs often have rate limits, limiting the number of requests that can be made in a given time frame.
-- **Solution**: Implement caching mechanisms and batch data processing to avoid hitting API rate limits.
+### 1. Getting Free Data
+- **Challenge**: Access to free APIs for wearable data was unavailable during development.
+- **Solution**: A dataset was generated using Mockaroo, simulating real-world wearable data.
 
-### 2. Data Inconsistencies
-- **Challenge**: Data from different sources (wearables, user inputs) may be inconsistent or poorly formatted.
-- **Solution**: Normalize data into standard formats and apply validation checks to ensure data consistency.
+### 2. Low-Quality Model Responses
+- **Challenge**: The AI models used (e.g., BlenderBot, DistilBERT) are lightweight and not optimized for medical applications.
+- **Solution**: While these models provide proof-of-concept functionality, they may not offer high-quality medical insights. Users should expect limited accuracy, and future improvements will involve integrating domain-specific AI models.
 
-### 3. Model Latency
-- **Challenge**: AI models may introduce latency, especially when handling multiple users simultaneously.
-- **Solution**: Use efficient model deployment techniques, such as model quantization or deploying models on GPUs/TPUs, and implement asynchronous processing.
+### 3. Limited Data
+- **Challenge**: The insights are limited to basic metrics, which may not fully represent the complexity of health analysis.
+- **Solution**: Future iterations can include more metrics and integrate real-time wearable data.
+
+### 4. Computational Resources
+- **Challenge**: Running the app locally without access to a GPU caused slower model loading and processing times.
+- **Solution**: The app was tested on Google Colab to leverage free GPU resources. Users may also deploy the app on cloud platforms for better performance.
 
 ---
 
@@ -130,11 +138,3 @@ To run the Streamlit app locally, simply clone the repo to ensure you have the m
 
 Important Note: Running the app locally may result in slower performance due to loading the AI models on your local computer, which can be resource-intensive. If the models take too long to load or run, consider using a cloud platform or a machine with more computational resources for better performance; which was why I experimented with running it on google colab first due to the GPUs available.
 
-
-  
-
-
-
-
-
-   
